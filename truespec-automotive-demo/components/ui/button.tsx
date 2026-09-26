@@ -5,9 +5,9 @@ export type ButtonVariant = "gold" | "outline" | "ghost" | "whatsapp" | "danger"
 export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  gold: "bg-gold text-gold-ink hover:bg-gold-soft active:bg-gold-deep border border-transparent",
+  gold: "bg-foreground text-background hover:bg-gold-soft active:bg-gold-deep border border-transparent font-semibold tracking-wide",
   outline:
-    "bg-transparent text-foreground border border-border-strong hover:border-gold hover:text-gold",
+    "bg-transparent text-foreground border border-border-strong hover:border-foreground hover:text-foreground",
   ghost: "bg-transparent text-foreground hover:bg-surface-raised border border-transparent",
   whatsapp:
     "bg-whatsapp text-whatsapp-ink hover:bg-whatsapp-deep border border-transparent",

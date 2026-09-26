@@ -18,13 +18,13 @@ export function StatusNavTiles({ counts }: { counts: Record<VehicleStatus, numbe
           className="group flex items-center justify-between gap-4 bg-surface px-6 py-6 transition-colors hover:bg-surface-raised"
         >
           <div>
-            <p className="font-display text-3xl text-gold-soft">{counts[tile.status]}</p>
+            <p className="font-display text-3xl text-foreground">{counts[tile.status]}</p>
             <p className="mt-1 text-sm font-medium uppercase tracking-wide text-foreground">
               {tile.label}
             </p>
             <p className="text-xs text-muted">{tile.description}</p>
           </div>
-          <ArrowRightIcon className="h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-gold" />
+          <ArrowRightIcon className="h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
         </Link>
       ))}
     </div>

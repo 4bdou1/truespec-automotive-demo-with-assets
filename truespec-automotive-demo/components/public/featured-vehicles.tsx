@@ -36,7 +36,7 @@ export function FeaturedVehicles({ vehicles }: { vehicles: PublicVehicle[] }) {
           <h3 className="font-display text-2xl uppercase tracking-wide text-foreground sm:text-3xl">
             {leadTitle}
           </h3>
-          <p className="text-lg text-gold-soft">{formatNaira(lead.doorstepPrice)}</p>
+          <p className="text-lg text-foreground">{formatNaira(lead.doorstepPrice)}</p>
         </div>
       </Link>
 

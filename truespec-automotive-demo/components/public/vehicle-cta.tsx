@@ -21,7 +21,7 @@ export function VehicleCta({
         {vehicle.detailsPending && <PendingBadge />}
       </div>
 
-      <p className="font-display text-3xl text-gold-soft">{formatNaira(vehicle.doorstepPrice)}</p>
+      <p className="font-display text-3xl text-foreground">{formatNaira(vehicle.doorstepPrice)}</p>
 
       {vehicle.publicNote && <p className="text-sm text-muted-strong">{vehicle.publicNote}</p>}
 

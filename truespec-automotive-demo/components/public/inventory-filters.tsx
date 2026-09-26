@@ -14,7 +14,7 @@ const PRICE_BANDS = [
 ];
 
 function selectClasses() {
-  return "h-11 w-full appearance-none rounded-md border border-border-strong bg-surface px-3 pr-9 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-gold";
+  return "h-11 w-full appearance-none rounded-md border border-border-strong bg-surface px-3 pr-9 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-foreground/50";
 }
 
 export function InventoryFilters({ makes }: { makes: string[] }) {
@@ -107,7 +107,7 @@ export function InventoryFilters({ makes }: { makes: string[] }) {
             value={query}
             onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Search brand, model, or color"
-            className="h-11 w-full rounded-md border border-border-strong bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted focus-visible:outline-2 focus-visible:outline-gold"
+            className="h-11 w-full rounded-md border border-border-strong bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted focus-visible:outline-2 focus-visible:outline-foreground/50"
           />
         </div>
       </label>
@@ -122,7 +122,7 @@ export function InventoryFilters({ makes }: { makes: string[] }) {
         <SlidersIcon className="h-4 w-4" />
         Filters
         {activeFilterCount > 0 && (
-          <span className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-gold text-xs text-gold-ink">
+          <span className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-xs text-background font-semibold">
             {activeFilterCount}
           </span>
         )}

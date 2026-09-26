@@ -13,7 +13,7 @@ export function VehicleCard({ vehicle, priority = false }: { vehicle: PublicVehi
   return (
     <Link
       href={`/inventory/${vehicle.slug}`}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_18px_40px_-24px_rgba(201,163,90,0.45)] focus-visible:-translate-y-1"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_20px_48px_-20px_rgba(255,255,255,0.12)] focus-visible:-translate-y-1"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-raised">
         {coverPhoto ? (
@@ -55,7 +55,7 @@ export function VehicleCard({ vehicle, priority = false }: { vehicle: PublicVehi
         </dl>
 
         <div className="mt-auto flex items-end justify-between gap-2 pt-1">
-          <p className="font-display text-xl text-gold-soft">{formatNaira(vehicle.doorstepPrice)}</p>
+          <p className="font-display text-xl text-foreground">{formatNaira(vehicle.doorstepPrice)}</p>
           {vehicle.detailsPending && <PendingBadge className="hidden sm:inline-flex" />}
         </div>
       </div>

@@ -12,7 +12,7 @@ export function CtaBand({
   const whatsappHref = buildWhatsAppLink(whatsappNumber, buildGeneralWhatsAppMessage(tagline));
 
   return (
-    <div className="rounded-lg border border-gold/25 bg-gradient-to-br from-surface to-surface-raised px-6 py-10 text-center sm:px-12 sm:py-14">
+    <div className="rounded-lg border border-foreground/10 bg-gradient-to-br from-surface to-surface-raised px-6 py-10 text-center sm:px-12 sm:py-14">
       <h2 className="font-display text-2xl uppercase tracking-wide text-foreground sm:text-3xl">
         Have a vehicle in mind?
       </h2>

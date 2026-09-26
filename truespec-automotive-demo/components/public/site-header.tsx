@@ -25,11 +25,10 @@ export function SiteHeader({
 }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  // Close the mobile menu on navigation. Adjusted during render (React's
-  // documented pattern for resetting state when a value changes) rather
-  // than in an effect, so it doesn't trigger an extra cascading render.
+  // Close the mobile menu on navigation.
   const [menuPathname, setMenuPathname] = useState(pathname);
   if (pathname !== menuPathname) {
     setMenuPathname(pathname);
@@ -43,35 +42,57 @@ export function SiteHeader({
     if (!menuOpen && dialog.open) dialog.close();
   }, [menuOpen]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const whatsappHref = buildWhatsAppLink(whatsappNumber, buildGeneralWhatsAppMessage(tagline));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
+    <header
+      className={clsx(
+        "sticky top-0 z-40 transition-all duration-300",
+        scrolled
+          ? "border-b border-border bg-background/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.04)]"
+          : "border-b border-transparent bg-background/60 backdrop-blur-sm",
+      )}
+    >
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="TrueSpec Automotive home">
           <Logo priority />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium uppercase tracking-wide text-muted-strong transition-colors hover:text-gold"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname?.startsWith(link.href.split("?")[0]);
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={clsx(
+                  "relative text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-200",
+                  "after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full",
+                  isActive
+                    ? "text-foreground after:w-full"
+                    : "text-muted-strong hover:text-foreground",
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <WhatsAppButton href={whatsappHref} size="sm" className="hidden sm:inline-flex">
             Chat on WhatsApp
           </WhatsAppButton>
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border-strong text-foreground lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded border border-border-strong text-foreground transition-colors hover:bg-surface-raised lg:hidden"
             aria-label="Open menu"
           >
             <MenuIcon />
@@ -94,18 +115,18 @@ export function SiteHeader({
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border-strong text-foreground"
+              className="inline-flex h-9 w-9 items-center justify-center rounded border border-border-strong text-foreground"
               aria-label="Close menu"
             >
               <CloseIcon />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col gap-1 px-4 py-6" aria-label="Mobile">
+          <nav className="flex flex-1 flex-col gap-0.5 px-3 py-4" aria-label="Mobile">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="rounded-md px-3 py-3.5 text-base font-medium uppercase tracking-wide text-foreground hover:bg-surface-raised hover:text-gold"
+                className="rounded px-3 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-muted-strong transition-colors hover:bg-surface-raised hover:text-foreground"
               >
                 {link.label}
               </Link>

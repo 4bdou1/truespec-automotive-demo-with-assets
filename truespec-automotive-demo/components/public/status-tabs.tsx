@@ -45,7 +45,7 @@ export function StatusTabs() {
             className={clsx(
               "min-h-11 shrink-0 rounded-sm px-4 text-sm font-medium uppercase tracking-wide transition-colors",
               isActive
-                ? "bg-gold text-gold-ink"
+                ? "bg-foreground text-background font-semibold"
                 : "text-muted-strong hover:bg-surface-raised hover:text-foreground",
             )}
           >

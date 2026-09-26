@@ -12,7 +12,7 @@ export function Badge({
 }) {
   const toneClasses: Record<typeof tone, string> = {
     neutral: "bg-surface-overlay text-muted-strong border-border-strong",
-    gold: "bg-gold/12 text-gold-soft border-gold/30",
+    gold: "bg-foreground/8 text-foreground border-foreground/20",
     danger: "bg-danger-soft text-danger border-danger/30",
     success: "bg-success/10 text-success border-success/30",
   };
@@ -38,7 +38,7 @@ const statusLabels: Record<VehicleStatus, string> = {
 
 const statusDotClasses: Record<VehicleStatus, string> = {
   available: "bg-success",
-  "on-order": "bg-gold",
+  "on-order": "bg-muted-strong",
   landed: "bg-muted-strong",
 };
 
