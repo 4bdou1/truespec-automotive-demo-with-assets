@@ -1,0 +1,9 @@
+Hi Umar, I got your number through my associate and business partner, who shared the TrueSpec Automotive project with me.
+
+I’ve read the full brief and I’m happy to take part in the demo process. My plan is to first build a polished, fully responsive frontend demo that focuses on what customers will actually experience: the homepage, the Available / On Order / Landed inventory sections, vehicle cards and detail pages, photo galleries, search and filtering, and vehicle-specific WhatsApp enquiries. I’ll also include the main admin screens so you can see how inventory management, cost entry, profit calculations, photo uploads, and settings will work.
+
+For the production build, I’ll develop the secure backend separately and deploy it on a VPS with PostgreSQL. The public and private data will be separated at both the database and API level, so sensitive information such as purchase costs, shipping, clearing costs, sourcing details, and profit can never be accessed through the public website. The final build will include secure owner-only authentication, inventory CRUD, image handling, audit logs, responsive testing, deployment, and basic handover documentation.
+
+I can have the frontend demo ready within 2–3 days. If you choose to move forward with me afterward, my rate for the complete production build is USD 1,500. Ongoing maintenance and hosting can be discussed separately depending on the level of support you need.
+
+To help me make the demo feel as close to the real TrueSpec brand as possible, please send me the logo in SVG or high-resolution PNG format, along with any vehicle photos or brand references you’d like me to use. If those aren’t ready yet, I can begin with temporary demo assets and replace them later.

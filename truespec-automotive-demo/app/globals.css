@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0a0b0d;
+  --color-surface: #16181c;
+  --color-surface-raised: #1e2126;
+  --color-surface-overlay: #24272d;
+  --color-border: #2b2e34;
+  --color-border-strong: #3a3e46;
+  --color-foreground: #f3f0e9;
+  --color-muted: #9a9da5;
+  --color-muted-strong: #c3c5cb;
+
+  --color-gold: #c9a35a;
+  --color-gold-soft: #e4c98a;
+  --color-gold-deep: #9c7a3c;
+  --color-gold-ink: #211a0d;
+
+  --color-whatsapp: #25d366;
+  --color-whatsapp-deep: #1ebe57;
+  --color-whatsapp-ink: #06210f;
+
+  --color-danger: #e5626a;
+  --color-danger-soft: #3a2226;
+  --color-success: #4fd1a5;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-surface-overlay: var(--color-surface-overlay);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-strong: var(--color-muted-strong);
+
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-gold-deep: var(--color-gold-deep);
+  --color-gold-ink: var(--color-gold-ink);
+
+  --color-whatsapp: var(--color-whatsapp);
+  --color-whatsapp-deep: var(--color-whatsapp-deep);
+  --color-whatsapp-ink: var(--color-whatsapp-ink);
+
+  --color-danger: var(--color-danger);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-success: var(--color-success);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), "Segoe UI", sans-serif;
+
+  --animate-reveal: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade: fade 0.4s ease both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-gold-ink);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.bg-grain {
+  position: relative;
+}
+
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+dialog::backdrop {
+  background: rgba(6, 7, 8, 0.72);
+  backdrop-filter: blur(2px);
+}
+
+dialog {
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
