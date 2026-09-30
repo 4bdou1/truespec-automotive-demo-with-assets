@@ -1,0 +1,12 @@
+{
+  "name": "truespec-automotive-demo-root",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix truespec-automotive-demo",
+    "build": "npm run build --prefix truespec-automotive-demo",
+    "start": "npm run start --prefix truespec-automotive-demo",
+    "lint": "npm run lint --prefix truespec-automotive-demo",
+    "typecheck": "npm run typecheck --prefix truespec-automotive-demo"
+  }
+}
