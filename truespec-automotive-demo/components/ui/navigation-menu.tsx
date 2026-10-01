@@ -6,10 +6,10 @@ import { Navigation, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#" },
-  { name: "Services", href: "#" },
-  { name: "Contact", href: "#" },
+  { name: "Available", href: "/inventory?status=available" },
+  { name: "On Order", href: "/inventory?status=on-order" },
+  { name: "Landed This Year", href: "/inventory?status=landed" },
+  { name: "All Inventory", href: "/inventory" },
 ];
 
 const EXPAND_SCROLL_THRESHOLD = 80;
@@ -98,7 +98,7 @@ export function AnimatedNavFramer() {
 
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden lg:block">
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={isExpanded ? "expanded" : "collapsed"}
@@ -131,7 +131,7 @@ export function AnimatedNavFramer() {
               href={item.href}
               variants={itemVariants}
               onClick={(e) => e.stopPropagation()}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
+              className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] text-muted-strong hover:text-foreground transition-colors px-2 sm:px-3 py-2"
             >
               {item.name}
             </motion.a>

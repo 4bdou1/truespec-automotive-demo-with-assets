@@ -7,6 +7,7 @@ import { clsx } from "clsx";
 import { Logo } from "./logo";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { MenuIcon, CloseIcon } from "@/components/ui/icons";
+import { AnimatedNavFramer } from "@/components/ui/navigation-menu";
 import { buildGeneralWhatsAppMessage, buildWhatsAppLink } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
@@ -59,31 +60,12 @@ export function SiteHeader({
           : "border-b border-transparent bg-background/60 backdrop-blur-sm",
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="TrueSpec Automotive home">
           <Logo priority />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href || pathname?.startsWith(link.href.split("?")[0]);
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={clsx(
-                  "relative text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-200",
-                  "after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full",
-                  isActive
-                    ? "text-foreground after:w-full"
-                    : "text-muted-strong hover:text-foreground",
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <AnimatedNavFramer />
 
         <div className="flex items-center gap-3">
           <WhatsAppButton href={whatsappHref} size="sm" className="hidden sm:inline-flex">
