@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -53,4 +54,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+export interface LinkButtonProps
+  extends React.ComponentProps<typeof Link>,
+    VariantProps<typeof buttonVariants> {}
+
+const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
+  ({ className, variant, size, ...props }, ref) => {
+    return (
+      <Link
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+LinkButton.displayName = "LinkButton"
+
+export { Button, buttonVariants, LinkButton }
