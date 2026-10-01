@@ -43,6 +43,11 @@ export function SiteHeader({
     if (!menuOpen && dialog.open) dialog.close();
   }, [menuOpen]);
 
+  // Hide the global header on the home page, as the ResponsiveHeroBanner has its own integrated navbar
+  if (pathname === "/") {
+    return null;
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });

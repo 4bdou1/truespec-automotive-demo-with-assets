@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+import { Logo } from "@/components/public/logo";
+
 interface NavLink {
     label: string;
     href: string;
@@ -14,7 +16,6 @@ interface Partner {
 }
 
 interface ResponsiveHeroBannerProps {
-    logoUrl?: string;
     backgroundImageUrl?: string;
     navLinks?: NavLink[];
     ctaButtonText?: string;
@@ -33,7 +34,6 @@ interface ResponsiveHeroBannerProps {
 }
 
 const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
-    logoUrl = "https://cdn.21st.dev/assets/mirror/c4/c4d5f159140e3ccc35a8bd4f043453cb9e2692f700206e43855ff598c171b924.png",
     backgroundImageUrl = "https://cdn.21st.dev/assets/mirror/a8/a8cf38f65f7315f95eba8c803c4a80a9d78cb2ea36fbfee49828396e4a0b9737.jpg",
     navLinks = [
         { label: "Home", href: "#", isActive: true },
@@ -76,11 +76,9 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
             <header className="z-10 xl:top-4 relative">
                 <div className="mx-6">
                     <div className="flex items-center justify-between pt-4">
-                        <a
-                            href="#"
-                            className="inline-flex items-center justify-center bg-center w-[100px] h-[40px] bg-cover rounded"
-                            style={{ backgroundImage: `url(${logoUrl})` }}
-                        />
+                        <a href="/" aria-label="Home">
+                            <Logo priority />
+                        </a>
 
                         <nav className="hidden md:flex items-center gap-2">
                             <div className="flex items-center gap-1 rounded-full bg-white/5 px-1 py-1 ring-1 ring-white/10 backdrop-blur">
@@ -168,21 +166,23 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                         </div>
                     </div>
 
-                    <div className="mx-auto mt-20 max-w-5xl">
-                        <p className="animate-fade-slide-in-1 text-sm text-white/70 text-center">
-                            {partnersTitle}
-                        </p>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 animate-fade-slide-in-2 text-white/70 mt-6 items-center justify-items-center gap-4">
-                            {partners.map((partner, index) => (
-                                <a
-                                    key={index}
-                                    href={partner.href}
-                                    className="inline-flex items-center justify-center bg-center w-[120px] h-[36px] bg-cover rounded-full opacity-80 hover:opacity-100 transition-opacity"
-                                    style={{ backgroundImage: `url(${partner.logoUrl})` }}
-                                />
-                            ))}
+                    {partners.length > 0 && (
+                        <div className="mx-auto mt-20 max-w-5xl">
+                            <p className="animate-fade-slide-in-1 text-sm text-white/70 text-center">
+                                {partnersTitle}
+                            </p>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 animate-fade-slide-in-2 text-white/70 mt-6 items-center justify-items-center gap-4">
+                                {partners.map((partner, index) => (
+                                    <a
+                                        key={index}
+                                        href={partner.href}
+                                        className="inline-flex items-center justify-center bg-center w-[120px] h-[36px] bg-cover rounded-full opacity-80 hover:opacity-100 transition-opacity"
+                                        style={{ backgroundImage: `url(${partner.logoUrl})` }}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>
