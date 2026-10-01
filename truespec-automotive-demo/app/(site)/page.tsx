@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getPublicListings, getPublicSettings } from "@/lib/api/public";
-import { Hero } from "@/components/public/hero";
+import ResponsiveHeroBanner from "@/components/ui/responsive-hero-banner";
 import { StatusNavTiles } from "@/components/public/status-nav-tiles";
 import { FeaturedVehicles } from "@/components/public/featured-vehicles";
 import { CtaBand } from "@/components/public/cta-band";
@@ -30,7 +30,17 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero tagline={settings.tagline} whatsappNumber={settings.whatsappNumber} />
+      <ResponsiveHeroBanner
+        badgeLabel="New"
+        badgeText="First Commercial Flight to Mars 2026"
+        title="Journey Beyond Earth"
+        titleLine2="Into the Cosmos"
+        description="Experience the cosmos like never before. Our advanced spacecraft and cutting-edge technology make interplanetary travel accessible, safe, and unforgettable."
+        primaryButtonText="Book Your Journey"
+        secondaryButtonText="Watch Launch"
+        ctaButtonText="Reserve Seat"
+        partnersTitle="Partnering with leading space agencies worldwide"
+      />
 
       <Container className="flex flex-col gap-16 py-14 sm:py-20">
         <StatusNavTiles counts={counts} />
