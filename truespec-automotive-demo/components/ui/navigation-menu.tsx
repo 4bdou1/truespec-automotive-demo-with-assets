@@ -14,7 +14,7 @@ const navItems = [
 
 const EXPAND_SCROLL_THRESHOLD = 80;
 
-const containerVariants = {
+const containerVariants: any = {
   expanded: {
     y: 0,
     opacity: 1,
@@ -44,17 +44,17 @@ const containerVariants = {
   },
 };
 
-const logoVariants = {
+const logoVariants: any = {
   expanded: { opacity: 1, x: 0, rotate: 0, transition: { type: "spring", damping: 15 } },
   collapsed: { opacity: 0, x: -25, rotate: -180, transition: { duration: 0.3 } },
 };
 
-const itemVariants = {
+const itemVariants: any = {
   expanded: { opacity: 1, x: 0, scale: 1, transition: { type: "spring", damping: 15 } },
   collapsed: { opacity: 0, x: -20, scale: 0.95, transition: { duration: 0.2 } },
 };
 
-const collapsedIconVariants = {
+const collapsedIconVariants: any = {
     expanded: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } },
     collapsed: { 
       opacity: 1, 

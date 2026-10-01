@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/button";
 
 export default function GlobalNotFound() {
   return (
@@ -12,9 +12,7 @@ export default function GlobalNotFound() {
         The page you&rsquo;re looking for doesn&rsquo;t exist or has moved.
       </p>
       <div className="mt-2 flex gap-3">
-        <Button asChild>
-          <Link href="/">Back home</Link>
-        </Button>
+        <LinkButton href="/">Back home</LinkButton>
         <Link
           href="/inventory"
           className="inline-flex h-11 items-center px-5 text-sm font-medium uppercase tracking-wide text-muted-strong hover:text-gold"

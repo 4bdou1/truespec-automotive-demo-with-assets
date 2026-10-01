@@ -1,74 +1,75 @@
-import * as React from "react"
-import Link from "next/link"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import Link from "next/link";
+import { clsx } from "clsx";
 
-import { cn } from "@/lib/utils"
+export type ButtonVariant = "gold" | "outline" | "ghost" | "whatsapp" | "danger";
+export type ButtonSize = "sm" | "md" | "lg";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  },
-)
+const variantClasses: Record<ButtonVariant, string> = {
+  gold: "bg-foreground text-background hover:bg-gold-soft active:bg-gold-deep border border-transparent font-semibold tracking-wide",
+  outline:
+    "bg-transparent text-foreground border border-border-strong hover:border-foreground hover:text-foreground",
+  ghost: "bg-transparent text-foreground hover:bg-surface-raised border border-transparent",
+  whatsapp:
+    "bg-whatsapp text-whatsapp-ink hover:bg-whatsapp-deep border border-transparent",
+  danger:
+    "bg-transparent text-danger border border-danger/40 hover:bg-danger-soft",
+};
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: "h-11 px-3.5 text-sm gap-1.5",
+  md: "h-11 px-5 text-sm gap-2",
+  lg: "h-12 px-7 text-base gap-2.5",
+};
+
+export function buttonClasses(
+  variant: ButtonVariant = "gold",
+  size: ButtonSize = "md",
+  className?: string,
+) {
+  return clsx(
+    "inline-flex items-center justify-center rounded-md font-medium tracking-wide transition-all duration-200 ease-out",
+    "disabled:opacity-50 disabled:pointer-events-none",
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  );
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  },
-)
-Button.displayName = "Button"
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+}
 
-export interface LinkButtonProps
-  extends React.ComponentProps<typeof Link>,
-    VariantProps<typeof buttonVariants> {}
+export function Button({ variant = "gold", size = "md", className, ...props }: ButtonProps) {
+  return <button className={buttonClasses(variant, size, className)} {...props} />;
+}
 
-const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
-    return (
-      <Link
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-LinkButton.displayName = "LinkButton"
+interface LinkButtonProps extends React.ComponentProps<typeof Link> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+}
 
-export { Button, buttonVariants, LinkButton }
+export function LinkButton({
+  variant = "gold",
+  size = "md",
+  className,
+  ...props
+}: LinkButtonProps) {
+  return <Link className={buttonClasses(variant, size, className)} {...props} />;
+}
+
+export function ExternalLinkButton({
+  variant = "gold",
+  size = "md",
+  className,
+  ...props
+}: LinkButtonProps & { href: string }) {
+  return (
+    <a
+      className={buttonClasses(variant, size, className)}
+      target="_blank"
+      rel="noreferrer noopener"
+      {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+    />
+  );
+}
